@@ -1,0 +1,30 @@
+name: Install with GitHub Packages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: "@michmakow"
+          cache: pnpm
+
+      - name: Export GitHub Packages token
+        run: echo "NODE_AUTH_TOKEN=${{ secrets.GH_PACKAGES_TOKEN }}" >> $GITHUB_ENV
+
+      - run: pnpm install
