@@ -30,6 +30,12 @@ describe("getSiteUrl", () => {
 
     expect(() => getSiteUrl()).toThrow(/NEXT_PUBLIC_SITE_URL/);
   });
+
+  it("throws an error when NEXT_PUBLIC_SITE_URL uses non-http protocol", () => {
+    process.env.NEXT_PUBLIC_SITE_URL = "ftp://preview.michalmakowski.dev";
+
+    expect(() => getSiteUrl()).toThrow(/NEXT_PUBLIC_SITE_URL/);
+  });
 });
 
 describe("getCanonicalUrl", () => {

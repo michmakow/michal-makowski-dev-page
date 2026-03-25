@@ -1,0 +1,31 @@
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@michmakow/application-platform-components";
+import { profileHighlightCards } from "@/mocks/home-page";
+
+export const HomeProfileHighlightsSection = () => (
+  <section
+    id="profile-highlights"
+    className="col-start-2 col-end-3 grid min-h-0 grid-rows-[repeat(4,minmax(0,1fr))] gap-4 overflow-hidden"
+  >
+    {profileHighlightCards.map((item) => (
+      <Card
+        key={item.title}
+        border
+        glow
+        rounded="3xl"
+        className={`${item.className} h-full min-h-0 overflow-hidden`}
+      >
+        <CardHeader className="h-full min-h-0 space-y-2 overflow-hidden">
+          <CardTitle className="text-xl text-slate-50">{item.title}</CardTitle>
+          <CardDescription className="text-sm leading-7 text-slate-100/90">
+            {item.description}
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    ))}
+  </section>
+);
