@@ -21,10 +21,6 @@ export const WorkExperiencePanel = ({
   }, [activeWorkExperienceIndex]);
 
   useEffect(() => {
-    if (typeof document === "undefined") {
-      return;
-    }
-
     const container = document.getElementById("work-experience-scroll-container");
     if (!container) {
       return;
@@ -244,6 +240,7 @@ export const WorkExperiencePanel = ({
     </div>
   );
 };
+
 
 
 

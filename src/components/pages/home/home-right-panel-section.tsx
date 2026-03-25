@@ -130,10 +130,6 @@ const buildWorkExperienceTitleId = (index: number) =>
   `work-experience-title-${index}`;
 
 const scrollToWorkExperienceEntry = (entryId: string) => {
-  if (typeof document === "undefined") {
-    return;
-  }
-
   const target = document.getElementById(entryId);
   if (!target) {
     return;
@@ -207,22 +203,18 @@ const renderProjectActionButton = (
     return iconAction;
   }
 
-  if (!isIconActionLabel(action.label)) {
-    return (
-      <Button
-        key={`${keyPrefix}-${action.label}`}
-        href={action.href}
-        variant={action.variant}
-        size="sm"
-        target={action.href.startsWith("http") ? "_blank" : undefined}
-        rel={action.href.startsWith("http") ? "noreferrer noopener" : undefined}
-      >
-        {action.label}
-      </Button>
-    );
-  }
-
-  return null;
+  return (
+    <Button
+      key={`${keyPrefix}-${action.label}`}
+      href={action.href}
+      variant={action.variant}
+      size="sm"
+      target={action.href.startsWith("http") ? "_blank" : undefined}
+      rel={action.href.startsWith("http") ? "noreferrer noopener" : undefined}
+    >
+      {action.label}
+    </Button>
+  );
 };
 
 const renderContactIconActionButton = (
@@ -422,3 +414,4 @@ export const HomeRightPanelSection = ({
     </section>
   );
 };
+
