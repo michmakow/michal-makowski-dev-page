@@ -128,6 +128,23 @@ jobs:
         if: env.CUSTOM_DOMAIN != ''
         run: echo "$CUSTOM_DOMAIN" > out/CNAME
 
+      - name: Validate exported paths
+        shell: bash
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+
+          if [ -n "$CUSTOM_DOMAIN" ]; then
+            if grep -q "/${REPO_NAME}/_next/" out/index.html; then
+              echo "Build still contains repository-prefixed asset paths for custom domain."
+              exit 1
+            fi
+
+            if [ ! -f out/CNAME ]; then
+              echo "CNAME file missing for custom domain build."
+              exit 1
+            fi
+          fi
+
       - name: Disable Jekyll processing
         run: touch out/.nojekyll
 
