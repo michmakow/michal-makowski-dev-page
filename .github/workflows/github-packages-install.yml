@@ -78,19 +78,40 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Compute GitHub Pages URL and base path
+      - name: Compute Pages URL and base path
         shell: bash
+        env:
+          CUSTOM_DOMAIN_INPUT: ${{ vars.CUSTOM_DOMAIN }}
+          DEFAULT_OWNER: michmakow
         run: |
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          OWNER_LOWER="michmakow"
+          OWNER_LOWER="${DEFAULT_OWNER}"
           REPO_LOWER="$(echo "$REPO_NAME" | tr '[:upper:]' '[:lower:]')"
+          CUSTOM_DOMAIN="$CUSTOM_DOMAIN_INPUT"
 
-          if [ "$REPO_LOWER" = "${OWNER_LOWER}.github.io" ]; then
+          if [ -z "$CUSTOM_DOMAIN" ] && [ -f CNAME ]; then
+            CUSTOM_DOMAIN="$(cat CNAME)"
+          fi
+
+          if [ -z "$CUSTOM_DOMAIN" ] && [ -f public/CNAME ]; then
+            CUSTOM_DOMAIN="$(cat public/CNAME)"
+          fi
+
+          CUSTOM_DOMAIN="$(echo "$CUSTOM_DOMAIN" | tr -d '\r' | xargs)"
+
+          if [ -n "$CUSTOM_DOMAIN" ]; then
+            DOMAIN_LOWER="$(echo "$CUSTOM_DOMAIN" | tr '[:upper:]' '[:lower:]')"
+            echo "NEXT_PUBLIC_BASE_PATH=" >> "$GITHUB_ENV"
+            echo "NEXT_PUBLIC_SITE_URL=https://${DOMAIN_LOWER}" >> "$GITHUB_ENV"
+            echo "CUSTOM_DOMAIN=${DOMAIN_LOWER}" >> "$GITHUB_ENV"
+          elif [ "$REPO_LOWER" = "${OWNER_LOWER}.github.io" ]; then
             echo "NEXT_PUBLIC_BASE_PATH=" >> "$GITHUB_ENV"
             echo "NEXT_PUBLIC_SITE_URL=https://${OWNER_LOWER}.github.io" >> "$GITHUB_ENV"
+            echo "CUSTOM_DOMAIN=" >> "$GITHUB_ENV"
           else
             echo "NEXT_PUBLIC_BASE_PATH=/${REPO_NAME}" >> "$GITHUB_ENV"
             echo "NEXT_PUBLIC_SITE_URL=https://${OWNER_LOWER}.github.io/${REPO_NAME}" >> "$GITHUB_ENV"
+            echo "CUSTOM_DOMAIN=" >> "$GITHUB_ENV"
           fi
 
           echo "GITHUB_PAGES=true" >> "$GITHUB_ENV"
@@ -103,6 +124,10 @@ jobs:
       - name: Build static export
         run: pnpm build
 
+      - name: Write custom domain CNAME
+        if: env.CUSTOM_DOMAIN != ''
+        run: echo "$CUSTOM_DOMAIN" > out/CNAME
+
       - name: Disable Jekyll processing
         run: touch out/.nojekyll
 
@@ -114,4 +139,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

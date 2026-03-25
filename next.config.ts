@@ -2,15 +2,20 @@ import type { NextConfig } from "next";
 
 const repository = process.env.GITHUB_REPOSITORY ?? "";
 const [repositoryOwner = "", repositoryName = ""] = repository.split("/");
-const isGithubPagesBuild = process.env.GITHUB_PAGES === "true";
-const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim();
 
-const normalizeBasePath = (value: string | undefined): string | undefined => {
-  if (!value || value === "/") {
+const isGithubPagesBuild = process.env.GITHUB_PAGES === "true";
+const rawConfiguredBasePath = process.env.NEXT_PUBLIC_BASE_PATH;
+const hasExplicitBasePath = rawConfiguredBasePath !== undefined;
+const hasCustomDomain = Boolean(process.env.CUSTOM_DOMAIN?.trim());
+
+const normalizeBasePath = (value?: string): string | undefined => {
+  const trimmed = value?.trim();
+
+  if (!trimmed || trimmed === "/") {
     return undefined;
   }
 
-  return value.startsWith("/") ? value : `/${value}`;
+  return trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
 };
 
 const isUserOrOrgPagesRepo =
@@ -23,13 +28,16 @@ const inferredBasePath =
     : undefined;
 
 const basePath = isGithubPagesBuild
-  ? normalizeBasePath(configuredBasePath) ?? inferredBasePath
+  ? hasCustomDomain
+    ? undefined
+    : hasExplicitBasePath
+      ? normalizeBasePath(rawConfiguredBasePath)
+      : inferredBasePath
   : undefined;
 
 const nextConfig: NextConfig = {
   output: isGithubPagesBuild ? "export" : undefined,
   basePath,
-  assetPrefix: basePath,
   trailingSlash: isGithubPagesBuild,
   images: {
     unoptimized: isGithubPagesBuild,
