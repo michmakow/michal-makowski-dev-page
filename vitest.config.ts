@@ -16,11 +16,13 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "html"],
       include: ["src/**/*.{ts,tsx}"],
-      exclude: [
-        "src/**/*.d.ts",
-        "src/**/*.types.ts",
-        "src/**/index.ts",
-      ],
+      exclude: ["src/**/*.d.ts", "src/**/*.types.ts", "src/**/index.ts"],
+      thresholds: {
+        lines: 100,
+        statements: 100,
+        functions: 100,
+        branches: 100,
+      },
     },
   },
 });
