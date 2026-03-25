@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   keywords: [...siteConfig.keywords],
   authors: [{ name: siteConfig.author }],
   creator: siteConfig.author,
+  icons: {
+    icon: [{ url: "/assets/my_logo.png", type: "image/png" }],
+    shortcut: [{ url: "/assets/my_logo.png", type: "image/png" }],
+    apple: [{ url: "/assets/my_logo.png", type: "image/png" }],
+  },
   openGraph: {
     title: defaultSeoTitle,
     description: siteConfig.description,
