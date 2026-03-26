@@ -9,7 +9,7 @@ import { profileHighlightCards } from "@/mocks/home-page";
 export const HomeProfileHighlightsSection = () => (
   <section
     id="profile-highlights"
-    className="col-start-2 col-end-3 grid min-h-0 grid-rows-[repeat(4,minmax(0,1fr))] gap-4 overflow-hidden"
+    className="grid min-h-0 grid-rows-4 gap-4 overflow-hidden"
   >
     {profileHighlightCards.map((item) => (
       <Card

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { HomePageInteractiveSections } from "./home-page-interactive-sections";
 
 describe("HomePageInteractiveSections", () => {
@@ -9,8 +9,12 @@ describe("HomePageInteractiveSections", () => {
 
     expect(screen.getByRole("heading", { name: /archora/i })).toBeInTheDocument();
 
+    const mobileNavigation = screen.getByRole("navigation");
+
     fireEvent.click(
-      screen.getByRole("button", { name: /communication profiler/i }),
+      within(mobileNavigation).getByRole("button", {
+        name: /communication profiler/i,
+      }),
     );
     expect(
       screen.getByRole("heading", { name: /communication profiler/i }),
@@ -28,14 +32,18 @@ describe("HomePageInteractiveSections", () => {
     fireEvent.click(screen.getByLabelText(/close adr modal/i));
 
     fireEvent.click(
-      screen.getByRole("button", { name: /application platform components/i }),
+      within(mobileNavigation).getByRole("button", {
+        name: /application platform components/i,
+      }),
     );
     expect(screen.getByText(/platform capabilities/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /work experience/i }));
+    fireEvent.click(
+      within(mobileNavigation).getByRole("button", { name: /work experience/i }),
+    );
     expect(screen.getAllByText(/key contributions/i).length).toBeGreaterThan(0);
 
-    fireEvent.click(screen.getByRole("button", { name: /contact/i }));
+    fireEvent.click(within(mobileNavigation).getByRole("button", { name: /contact/i }));
     fireEvent.click(screen.getByRole("button", { name: /^github$/i }));
     expect(openSpy).toHaveBeenCalled();
 

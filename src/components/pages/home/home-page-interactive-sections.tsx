@@ -46,7 +46,7 @@ export const HomePageInteractiveSections = () => {
   return (
     <>
       <Separator
-        className="col-start-1 col-end-3 row-start-2 row-end-3 px-3"
+        className="hidden lg:flex col-start-1 col-end-3 row-start-2 row-end-3 px-3"
         variant="solid"
         color="rgba(88,116,168,0.72)"
         centerColor="rgba(229,184,88,0.78)"
@@ -54,6 +54,11 @@ export const HomePageInteractiveSections = () => {
         trackExtent="3.4rem"
         fadeEnds
         orientation="horizontal"
+      />
+
+      <HomeNavigationSeparators
+        activeRightPanelKey={activeRightPanelKey}
+        onRightPanelChange={handleRightPanelChange}
       />
 
       <HomeRightPanelSection
@@ -65,12 +70,7 @@ export const HomePageInteractiveSections = () => {
         onArchitectureDecisionOpen={setActiveArchitectureDecisionId}
       />
 
-      <HomeNavigationSeparators
-        activeRightPanelKey={activeRightPanelKey}
-        onRightPanelChange={handleRightPanelChange}
-      />
-
-      <div className="grid grid-cols-[1.4fr_1fr] gap-4 col-start-1 col-end-2 row-start-3 row-end-4 m-3 min-h-0 max-h-full overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr] gap-4 m-3 overflow-hidden lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 lg:min-h-0 lg:max-h-full">
         <HomeProfileSection />
         <HomeProfileHighlightsSection />
       </div>
