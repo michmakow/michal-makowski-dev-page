@@ -12,12 +12,12 @@ import {
 import { profilePills } from "@/mocks/home-page";
 
 export const HomeProfileSection = () => (
-  <section id="profile" className="col-start-1 col-end-2 min-h-0">
+  <section id="profile" className="col-start-1 col-end-2 min-h-155">
     <Card
       border
       glow
       rounded="3xl"
-      className="relative flex h-full min-h-0 flex-col overflow-hidden border-slate-700/70 bg-slate-950/80"
+      className="relative flex flex-col overflow-hidden border-slate-700/70 bg-slate-950/80"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(56,189,248,0.14),rgba(56,189,248,0))]" />
       <CardHeader className="relative space-y-5 pb-3">

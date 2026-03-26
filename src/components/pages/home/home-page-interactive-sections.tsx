@@ -70,7 +70,7 @@ export const HomePageInteractiveSections = () => {
         onArchitectureDecisionOpen={setActiveArchitectureDecisionId}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr] gap-4 m-3 overflow-hidden lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 lg:min-h-0 lg:max-h-full">
+      <div className="grid grid-cols-1 sm:grid-cols-[1.4fr_1fr] gap-4 m-3 overflow-y-auto lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 lg:min-h-0 lg:max-h-full">
         <HomeProfileSection />
         <HomeProfileHighlightsSection />
       </div>
