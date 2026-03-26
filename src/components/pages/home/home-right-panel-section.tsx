@@ -279,7 +279,7 @@ export const HomeRightPanelSection = ({
       : activeRightPanel.actions;
 
   return (
-    <section className="flex h-[65vh] min-h-70 flex-col py-3 px-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-4 lg:h-full lg:min-h-0 lg:pr-3 lg:pl-0">
+    <section className="flex h-[195vh] min-h-70 flex-col py-3 px-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-4 lg:h-full lg:min-h-0 lg:pr-3 lg:pl-0">
       <Card
         border
         glow
