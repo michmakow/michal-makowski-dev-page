@@ -279,12 +279,12 @@ export const HomeRightPanelSection = ({
       : activeRightPanel.actions;
 
   return (
-    <section className="col-start-3 col-end-4 row-start-1 row-end-4 flex h-full min-h-0 flex-col py-3 pr-3">
+    <section className="flex h-[65vh] min-h-70 flex-col py-3 px-3 lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-4 lg:h-full lg:min-h-0 lg:pr-3 lg:pl-0">
       <Card
         border
         glow
         rounded="3xl"
-        className="relative ml-7 mr-3 flex min-h-0 flex-1 flex-col overflow-hidden border-slate-700/70 bg-slate-900/80"
+        className="relative flex min-h-0 flex-1 flex-col overflow-hidden border-slate-700/70 bg-slate-900/80 lg:ml-7 lg:mr-3"
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.16),rgba(2,6,23,0.1)_45%,rgba(2,6,23,0.92)_80%)] overflow-y-auto" />
         <CardHeader className="relative space-y-4 px-8 pt-8">
@@ -294,8 +294,8 @@ export const HomeRightPanelSection = ({
               alt="Communication Profiler preview"
               width={750}
               height={375}
-              sizes="750px"
-              className="pointer-events-none absolute right-5 -top-20 h-auto w-130 max-w-none select-none object-contain drop-shadow-[0_16px_34px_rgba(2,6,23,0.5)]"
+              sizes="(max-width: 640px) 90vw, 520px"
+              className="pointer-events-none absolute right-5 -top-20 h-auto w-130 max-w-none select-none object-contain drop-shadow-[0_16px_34px_rgba(2,6,23,0.5)] hidden md:block"
             />
           ) : null}
           <p className="text-xs uppercase tracking-[0.24em] text-sky-200/75">
@@ -408,7 +408,7 @@ export const HomeRightPanelSection = ({
           )}
         </CardFooter>
       </Card>
-      <div className="mx-24 mt-3 shrink-0">
+      <div className="mx-3 mt-3 shrink-0 sm:mx-12 lg:mx-24">
         <HardSkillsIconCarousel />
       </div>
     </section>

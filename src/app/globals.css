@@ -32,8 +32,14 @@ a {
   background-image:
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 56px 56px;
+  background-size: 28px 28px;
   /* mask-image: radial-gradient(circle at 50% 30%, black 38%, transparent 100%); */
+}
+
+@media (min-width: 1024px) {
+  .architect-grid {
+    background-size: 56px 56px;
+  }
 }
 
 @keyframes hard-skills-carousel-scroll {

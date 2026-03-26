@@ -4,7 +4,7 @@ import myPhoto from "@/assets/my_photo.png";
 export const HomeHeroSection = () => (
   <section
     id="hero"
-    className="overflow-hidden relative m-3 col-start-1 col-end-2 row-start-1 row-end-2 rounded-3xl border border-sky-900/60 bg-slate-950/80 shadow-[0_30px_120px_rgba(3,8,20,0.65)]"
+    className="overflow-hidden relative m-3 rounded-3xl border border-sky-900/60 bg-slate-950/80 shadow-[0_30px_120px_rgba(3,8,20,0.65)] lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2"
   >
     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(56,189,248,0.08),rgba(2,6,23,0.68),rgba(229,184,88,0.08))]" />
     <div className="relative min-h-full grid items-start gap-6 p-5 lg:grid-cols-[1.2fr_0.8fr]">
@@ -40,14 +40,14 @@ export const HomeHeroSection = () => (
           </li>
         </ul>
       </div>
-      <div className="relative z-10 overflow-hidden rounded-[26px] border border-amber-300/30 shadow-[0_18px_55px_rgba(2,6,23,0.55),0_0_18px_rgba(229,184,88,0.24),inset_0_0_0_1px_rgba(229,184,88,0.19)] h-full w-full">
+      <div className="relative z-10 overflow-hidden rounded-[26px] border border-amber-300/30 shadow-[0_18px_55px_rgba(2,6,23,0.55),0_0_18px_rgba(229,184,88,0.24),inset_0_0_0_1px_rgba(229,184,88,0.19)] h-150 w-full sm:h-96 lg:h-full">
         <Image
           src={myPhoto}
           alt="Michał Makowski portrait"
           fill
           preload
-          sizes="(max-width: 1024px) 65vw, 248px"
-          className="object-cover object-[52%_35%]"
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 65vw, 248px"
+          className="object-cover object-[52%_20%]"
         />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0)_62%,rgba(2,6,23,0.42)_100%)]" />
       </div>

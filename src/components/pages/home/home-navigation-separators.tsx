@@ -118,58 +118,102 @@ export const HomeNavigationSeparators = ({
   onRightPanelChange,
 }: HomeNavigationSeparatorsProps) => (
   <>
-    <Separator
-      className="col-start-2 col-end-3 row-start-1 row-end-2 p-3"
-      variant="icon"
-      color="rgba(88,116,168,0.72)"
-      centerColor="rgba(229,184,88,0.78)"
-      thickness={3}
-      trackExtent="3.4rem"
-      fadeEnds
-      orientation="vertical"
-      icons={projectPanels.map((panel) => ({
-        kind: "icon-button",
-        id: panel.key,
-        icon: projectPanelIcons[panel.key],
-        alt: panel.iconLabel,
-        title: panel.iconTitle,
-        description: panel.iconDescription,
-        active: panel.key === activeRightPanelKey,
-        variant: panel.key === activeRightPanelKey ? "solid" : "outline",
-        size: "lg",
-        className:
-          panel.key === activeRightPanelKey
-            ? "text-amber-200 p-1 h-10 w-10"
-            : "text-sky-100/85 hover:text-sky-100 cursor-pointer p-1 h-10 w-10",
-        onClick: () => onRightPanelChange(panel.key),
-      }))}
-    />
+    {/* Mobile horizontal navigation — hidden on desktop */}
+    <nav className="flex lg:hidden items-center justify-center gap-2 px-3 py-2 m-3 rounded-2xl border border-sky-900/40 bg-slate-950/70">
+      {projectPanels.map((panel) => (
+        <button
+          key={panel.key}
+          type="button"
+          onClick={() => onRightPanelChange(panel.key)}
+          title={panel.iconTitle}
+          aria-label={panel.iconLabel}
+          className={`shrink-0 inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border transition-colors ${
+            panel.key === activeRightPanelKey
+              ? "border-amber-300/45 bg-amber-300/15 text-amber-200"
+              : "border-sky-300/35 bg-slate-900/80 text-sky-100/85 hover:text-sky-100"
+          }`}
+        >
+          <span className="block h-5 w-5 [&>svg]:h-full [&>svg]:w-full">
+            {projectPanelIcons[panel.key]}
+          </span>
+        </button>
+      ))}
+      <span className="h-5 w-px shrink-0 bg-sky-800/60 mx-1" aria-hidden />
+      {utilityPanels.map((panel) => (
+        <button
+          key={panel.key}
+          type="button"
+          onClick={() => onRightPanelChange(panel.key)}
+          title={panel.iconTitle}
+          aria-label={panel.iconLabel}
+          className={`shrink-0 inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border transition-colors ${
+            panel.key === activeRightPanelKey
+              ? "border-amber-300/45 bg-amber-300/15 text-amber-200"
+              : "border-sky-300/35 bg-slate-900/80 text-sky-100/85 hover:text-sky-100"
+          }`}
+        >
+          <span className="block h-5 w-5 [&>svg]:h-full [&>svg]:w-full">
+            {utilityPanelIcons[panel.key]}
+          </span>
+        </button>
+      ))}
+    </nav>
 
-    <Separator
-      className="col-start-2 col-end-3 row-start-2 row-end-4 p-3"
-      variant="icon"
-      color="rgba(88,116,168,0.72)"
-      centerColor="rgba(229,184,88,0.78)"
-      thickness={3}
-      trackExtent="3.4rem"
-      fadeEnds
-      orientation="vertical"
-      icons={utilityPanels.map((panel) => ({
-        kind: "icon-button",
-        id: panel.key,
-        icon: utilityPanelIcons[panel.key],
-        alt: panel.iconLabel,
-        title: panel.iconTitle,
-        description: panel.iconDescription,
-        active: panel.key === activeRightPanelKey,
-        variant: panel.key === activeRightPanelKey ? "solid" : "outline",
-        size: "lg",
-        className:
-          panel.key === activeRightPanelKey
-            ? "text-amber-200 p-1 h-10 w-10"
-            : "text-sky-100/85 hover:text-sky-100 cursor-pointer p-1 h-10 w-10",
-        onClick: () => onRightPanelChange(panel.key),
-      }))}
-    />
+    {/* Desktop vertical separators — hidden on mobile, transparent wrapper on desktop */}
+    <div className="hidden lg:contents">
+      <Separator
+        className="col-start-2 col-end-3 row-start-1 row-end-2 p-3"
+        variant="icon"
+        color="rgba(88,116,168,0.72)"
+        centerColor="rgba(229,184,88,0.78)"
+        thickness={3}
+        trackExtent="3.4rem"
+        fadeEnds
+        orientation="vertical"
+        icons={projectPanels.map((panel) => ({
+          kind: "icon-button",
+          id: panel.key,
+          icon: projectPanelIcons[panel.key],
+          alt: panel.iconLabel,
+          title: panel.iconTitle,
+          description: panel.iconDescription,
+          active: panel.key === activeRightPanelKey,
+          variant: panel.key === activeRightPanelKey ? "solid" : "outline",
+          size: "lg",
+          className:
+            panel.key === activeRightPanelKey
+              ? "text-amber-200 p-1 h-10 w-10"
+              : "text-sky-100/85 hover:text-sky-100 cursor-pointer p-1 h-10 w-10",
+          onClick: () => onRightPanelChange(panel.key),
+        }))}
+      />
+
+      <Separator
+        className="col-start-2 col-end-3 row-start-2 row-end-4 p-3"
+        variant="icon"
+        color="rgba(88,116,168,0.72)"
+        centerColor="rgba(229,184,88,0.78)"
+        thickness={3}
+        trackExtent="3.4rem"
+        fadeEnds
+        orientation="vertical"
+        icons={utilityPanels.map((panel) => ({
+          kind: "icon-button",
+          id: panel.key,
+          icon: utilityPanelIcons[panel.key],
+          alt: panel.iconLabel,
+          title: panel.iconTitle,
+          description: panel.iconDescription,
+          active: panel.key === activeRightPanelKey,
+          variant: panel.key === activeRightPanelKey ? "solid" : "outline",
+          size: "lg",
+          className:
+            panel.key === activeRightPanelKey
+              ? "text-amber-200 p-1 h-10 w-10"
+              : "text-sky-100/85 hover:text-sky-100 cursor-pointer p-1 h-10 w-10",
+          onClick: () => onRightPanelChange(panel.key),
+        }))}
+      />
+    </div>
   </>
 );

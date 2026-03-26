@@ -83,7 +83,7 @@ export const WorkExperiencePanel = ({
   ]);
 
   return (
-    <div className="mt-6 grid h-fit w-full grid-cols-[76px_minmax(0,1fr)] items-start gap-4">
+    <div className="mt-6 grid h-fit w-full grid-cols-[48px_minmax(0,1fr)] items-start gap-4 md:grid-cols-[76px_minmax(0,1fr)]">
       <div className="sticky top-14 self-start">
         <Separator
           className="h-200 px-1"

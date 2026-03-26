@@ -46,7 +46,7 @@ export const ApplicationPlatformComponentsPanel = ({
         ))}
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {operatingCards.map((card) => (
           <article
             key={card.title}
@@ -81,7 +81,7 @@ export const ApplicationPlatformComponentsPanel = ({
         <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-sky-200/85">
           Stack role hint
         </p>
-        <div className="mt-3 grid gap-3 lg:grid-cols-3">
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {techStack.map((group) => (
             <section
               key={group.group}

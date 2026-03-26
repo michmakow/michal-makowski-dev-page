@@ -49,7 +49,7 @@ export const ArchitectureDecisionModal = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby={`adr-title-${decision.id}`}
-        className="relative h-fit w-full max-w-3xl rounded-3xl border border-slate-600/80 bg-slate-950/95 p-6 shadow-[0_30px_90px_rgba(2,6,23,0.8)]"
+        className="relative h-fit w-full max-w-[95vw] overflow-y-auto rounded-3xl border border-slate-600/80 bg-slate-950/95 p-4 shadow-[0_30px_90px_rgba(2,6,23,0.8)] md:max-w-3xl md:p-6"
         onClick={(event) => event.stopPropagation()}
       >
         <button

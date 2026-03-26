@@ -51,7 +51,7 @@ export const CommunicationProfilerPanel = ({
         <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-200/85">
           Architecture Decisions
         </h4>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {architectureDecisions.map((decision) => (
             <button
               key={decision.id}
@@ -86,7 +86,7 @@ export const CommunicationProfilerPanel = ({
         <h4 className="text-xs font-semibold uppercase tracking-[0.14em] text-sky-200/85">
           Application previews
         </h4>
-        <div className="grid w-full grid-cols-3 gap-3">
+        <div className="grid w-full grid-cols-2 gap-3 lg:grid-cols-3">
           {lightboxImages.map((image) => (
             <PortalImageLightbox
               key={image.id}
@@ -94,7 +94,7 @@ export const CommunicationProfilerPanel = ({
               alt={image.alt}
               hint={image.hint}
               className="h-48 w-full object-cover"
-              thumbnailSizes="(max-width: 1024px) 28vw, 360px"
+              thumbnailSizes="(max-width: 1024px) 45vw, 360px"
             />
           ))}
         </div>
