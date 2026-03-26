@@ -4,7 +4,7 @@ import myPhoto from "@/assets/my_photo.png";
 export const HomeHeroSection = () => (
   <section
     id="hero"
-    className="overflow-hidden relative m-3 rounded-3xl border border-sky-900/60 bg-slate-950/80 shadow-[0_30px_120px_rgba(3,8,20,0.65)] lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2"
+    className="overflow-x-hidden overflow-y-auto relative m-3 rounded-3xl border border-sky-900/60 bg-slate-950/80 shadow-[0_30px_120px_rgba(3,8,20,0.65)] lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2"
   >
     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(56,189,248,0.08),rgba(2,6,23,0.68),rgba(229,184,88,0.08))]" />
     <div className="relative min-h-full grid items-start gap-6 p-5 lg:grid-cols-[1.2fr_0.8fr]">
